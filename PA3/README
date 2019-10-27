@@ -1,0 +1,30 @@
+PA3 DNS Name Resolution Engine
+
+This is the programming assignment 3 for CSCI3753 Operating system course, University of Colorado, Boulder.
+It is a multi-threaded application that resolves domain names to IP address.
+
+util.c and util.h: two files that resolves the DNS name loopup.
+
+multi-lookup.c and multi-lookup.h: creates the requester thread pool and resolver threads pool that controls threads to deal with the DNS name resolution
+
+queue.c and queue.h: the implementation of the shared buffer, which is a queue
+
+Makefile: build and clean the application
+
+input: folders contain the test file (names1.txt,names2.txt,names3.txt,names4.txt,names5.txt)
+
+requester_log.txt: name of the file into which all the requester status information is written.
+
+results.txt: name of the file into which all the resolver status information is written.
+
+performance.txt: record the performance of six various scenarios: 1 requester thread and 1 resolver thread, 1 requester thread and 3 resolver threads, 3 requester threads and 1 resolver thread, 3 requester threads and 3 resolver threads, 5 requester threads and 5 resolver threads, and 8 requester threads and 5 resolver threads.
+
+Complie the program: make
+Clean: make clean
+Synopsis for running the program: multi-lookup <# requester> <# resolver> <requester log> <resolver log> [ <data file> ...]
+          ex: ./multi-lookup 5 10 requester_log.txt results.txt input/names1.txt input/names2.txt input/names3.txt input/names3.txt input/names4.txt input/names5.txt
+
+Check for memory leaks: valgrind ./multi-lookup 5 10 requester_log.txt results.txt input/names1.txt input/names2.txt input/names3.txt input/names3.txt input/names4.txt input/names5.txt
+
+Author: Weiyao Tang
+

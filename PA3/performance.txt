@@ -1,0 +1,45 @@
+Number for requester thread=1
+Number for resolver thread=1
+Total run time: 48203337 milliseconds
+Thread 100800256 serviced 5 files
+
+Number for requester thread=1
+Number for resolver thread=3
+Total run time: 26466343 milliseconds
+Thread 100800256 serviced 5 files 
+
+Number for requester thread=3
+Number for resolver thread=1
+Total run time: 49436267 milliseconds
+Thread 117585664 serviced 1 files 
+Thread 100800256 serviced 2 files 
+Thread 109192960 serviced 2 files 
+
+Number for requester thread=3
+Number for resolver thread=3
+Total run time: 25940769 milliseconds
+Thread 117585664 serviced 1 files 
+Thread 109192960 serviced 2 files 
+Thread 100800256 serviced 2 files 
+
+Number for requester thread=5
+Number for resolver thread=5
+Total run time: 26061825 milliseconds
+Thread 100800256 serviced 1 files 
+Thread 109192960 serviced 1 files 
+Thread 117585664 serviced 1 files 
+Thread 125978368 serviced 1 files 
+Thread 134371072 serviced 1 files 
+
+Number for requester thread=8
+Number for resolver thread=5
+Total run time: 25659404 milliseconds
+Thread 151156480 serviced 0 files 
+Thread 100800256 serviced 0 files 
+Thread 109192960 serviced 0 files 
+Thread 117585664 serviced 1 files 
+Thread 142763776 serviced 1 files 
+Thread 134371072 serviced 1 files 
+Thread 125978368 serviced 1 files 
+Thread 159549184 serviced 1 files 
+
