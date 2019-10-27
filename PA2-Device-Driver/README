@@ -1,0 +1,4 @@
+email address: weta9784@colorado.edu
+Device Driver: simple_char_driver.c installed in my home/kernel/linux-hwe-4.15.0/lib/modules/simple_char_driver.c
+Test Program: TestApp.c installed in my Desktop
+Makefile  installed in my home/kernel/linux-hwe-4.15.0/lib/modules/Makefile
