@@ -5,9 +5,6 @@
 
 #include<linux/fs.h>
 #include<linux/slab.h>
-//#include<asm/uaccess.h>
-//#include<linux/sched.h>
-//#include<linux/cdev.h>
 #include<linux/uaccess.h>
 
 #define BUFFER_SIZE 1024
@@ -62,12 +59,12 @@ ssize_t simple_char_driver_read (struct file *pfile, char __user *buffer, size_t
   	copy_len=BUFFER_SIZE-*offset;
   else
   	copy_len=length;
-  error_count=copy_to_user(buffer,device_buffer+*offset,copy_len);
+
+  error_count=copy_to_user(buffer,device_buffer+*offset,copy_len); //count how many bytes have been sent to user
   int real_number=copy_len - error_count;
   if(error_count)
   {
     printk(KERN_ALERT "TangChar: Reading Error! Only %d characters are sent \n",real_number);
-    //return -EFAULT;
   }
   else{
     printk(KERN_ALERT "TangChar: Sent %d characters to the user. \n", copy_len);
@@ -90,27 +87,26 @@ ssize_t simple_char_driver_write (struct file *pfile, const char __user *buffer,
     printk(KERN_ALERT "TangChar: Reading Error! The offset is no less than the total size \n");
     return 0;
   }
-  //size_t copy_len=min(BUFFER_SIZE-*offset,length);
+  
   size_t copy_len;
   if(BUFFER_SIZE-*offset<length)
   	copy_len=BUFFER_SIZE-*offset;
   else
   	copy_len=length;
+
   error_count=copy_from_user(device_buffer+*offset,buffer,copy_len);
   int real_number=copy_len - error_count;
   if(error_count)
   {
     printk(KERN_ALERT "TangChar: Writing Error! Only %d characters are sent \n",real_number);
-    //return -EFAULT;
   }
   else{
     printk(KERN_ALERT "TangChar: Sent %d characters to the kernel. \n", copy_len);
   }
   *offset+=real_number;
+
+
   return real_number;
-
-
-	//return 0;
 }
 
 
@@ -119,7 +115,7 @@ int simple_char_driver_open (struct inode *pinode, struct file *pfile)
 	/* print to the log file that the device is opened and also print the number of times this device has been opened until now*/
         OpenNumber++;
         printk(KERN_ALERT "TangChar: Tangchar is opened, the opened time is %d \n",OpenNumber);
-	return 0;
+	      return 0;
 }
 
 int simple_char_driver_close (struct inode *pinode, struct file *pfile)
@@ -127,7 +123,7 @@ int simple_char_driver_close (struct inode *pinode, struct file *pfile)
 	/* print to the log file that the device is closed and also print the number of times this device has been closed until now*/
         CloseNumber++;
         printk(KERN_ALERT "TangChar: Tangchar is closed, the closed time is %d \n",CloseNumber);
-	return 0;
+	      return 0;
 }
 
 loff_t simple_char_driver_seek (struct file *pfile, loff_t offset, int whence)
@@ -144,8 +140,6 @@ loff_t simple_char_driver_seek (struct file *pfile, loff_t offset, int whence)
            new_position=BUFFER_SIZE-offset;
        }
        else{
-           //new_position=pfile->f_pos;
-           //printk(KERN_ALERT "TangChar: ERROR! \n");
            return -EINVAL;
        }
        if(new_position<0 || new_position>BUFFER_SIZE)
